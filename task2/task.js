@@ -7,9 +7,9 @@ xhr.onreadystatechange = (e) => {
     e.preventDefault();
 
     if (xhr.readyState === xhr.DONE) {
-        let title = JSON.parse(xhr.response)['data']['title'];
+        let title = xhr.response['data']['title'];
         pollTitle.innerText = title;
-        let answers = JSON.parse(xhr.response)['data']['answers'];
+        let answers = xhr.response['data']['answers'];
         for (let answer in answers) {
             let template = `
             <button class="poll__answer">
@@ -26,4 +26,5 @@ pollAnswers.onclick = () => {
 }
 
 xhr.open('GET','https://students.netoservices.ru/nestjs-backend/poll');
+xhr.responseType = 'json'
 xhr.send();

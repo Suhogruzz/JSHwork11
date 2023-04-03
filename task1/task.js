@@ -8,7 +8,7 @@ xhr.onreadystatechange = (e) => {
     if (xhr.readyState === xhr.DONE) {
         loader.classList.remove('loader_active');
 
-        let currencies = JSON.parse(xhr.response)['response']['Valute'];
+        let currencies = xhr.response['response']['Valute'];
         for (let currency in currencies) {
             let template = `
                 <div class="item">
@@ -29,4 +29,5 @@ xhr.onreadystatechange = (e) => {
 }
 
 xhr.open('GET','https://students.netoservices.ru/nestjs-backend/slow-get-courses');
+xhr.responseType = 'json'
 xhr.send();
